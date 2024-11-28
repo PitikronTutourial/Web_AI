@@ -1,0 +1,56 @@
+[
+    {
+        "s_id": "6404062610090",
+        "pic_r": "face.jpeg",
+        "pic_cam": "full.jpeg",
+        "date": "04/04/2024 11:25:43",
+        "mood": "happy",
+        "age": 30,
+        "gender": "Man"
+    },
+    {
+        "s_id": "6404062610120",
+        "pic_r": "face.jpeg",
+        "pic_cam": "full.jpeg",
+        "date": "04/04/2024 11:26:07",
+        "mood": "sad",
+        "age": 31,
+        "gender": "Man"
+    },
+    {
+        "s_id": "6404062610090",
+        "pic_r": "face.jpeg",
+        "pic_cam": "full.jpeg",
+        "date": "04/04/2024 11:26:15",
+        "mood": "neutral",
+        "age": 33,
+        "gender": "Man"
+    },
+    {
+        "s_id": "6404062610090",
+        "pic_r": "face.jpeg",
+        "pic_cam": "full.jpeg",
+        "date": "04/04/2024 11:26:17",
+        "mood": "surprise",
+        "age": 37,
+        "gender": "Man"
+    },
+    {
+        "s_id": "6404062610090",
+        "pic_r": "face.jpeg",
+        "pic_cam": "full.jpeg",
+        "date": "04/04/2024 11:26:22",
+        "mood": "sad",
+        "age": 39,
+        "gender": "Man"
+    },
+    {
+        "s_id": "6404062610090",
+        "pic_r": "face.jpeg",
+        "pic_cam": "full.jpeg",
+        "date": "04/04/2024 11:26:26",
+        "mood": "sad",
+        "age": 26,
+        "gender": "Man"
+    }
+]

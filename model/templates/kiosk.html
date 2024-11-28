@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiosk</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/kiosk.css') }}">
+    <!-- นำเข้าไฟล์ jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="header"><span class="bullet">&#x2022; </span>Live <span id="date-info">Date: </span></div>
+    <div class="container">
+        <div class="v-box">
+            <img id="video-feed" src="" alt="Video Feed">
+        </div>
+        <div class="box">
+            <div id="latest-events-container">
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const videoFeed = document.getElementById('video-feed');
+        const dateInfo = document.getElementById('date-info');
+        const updateInterval = 1000;
+        
+        function updateImage() {
+            videoFeed.src = "/Video";
+            setTimeout(updateImage, updateInterval);
+        }
+
+        function updateDate() {
+            const currentDate = new Date();
+            const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+            dateInfo.textContent = "Date: " + currentDate.toLocaleDateString('th-TH', options);
+        }
+
+        window.onload = function() {
+            updateImage();
+            updateDate();
+        };
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            async function fetchLatestEvents() {
+                console.log("active");
+                try {
+                    const response = await fetch('http://localhost:3001/get-last-report');
+                    const data = await response.json();
+                    console.log("data is:", data);
+                    const container = document.getElementById('latest-events-container');
+                    container.innerHTML = ''; // Clear previous content
+                    data.forEach(event => {
+                        p = document.createElement('h1')
+                        p.innerHTML = `
+                        <span">Student ID : </span> ${event.s_id}<br>
+                        <span">Mood : </span> ${event.mood}<br>
+                        <span">Age : </span> ${event.age}<br>
+                        <span">Gender : </span> ${event.gender}
+                        `;
+
+                        img = document.createElement('img')
+                        img.classList.add("imglist")
+                        img.src = `data:image/jpeg;base64,${event.pic_r}`;
+                        const divBox = document.createElement('div');
+
+                        divBox.classList.add('box-text');
+
+                        const divText = document.createElement('div');
+
+                        divText.classList.add('text');
+
+                        divBox.appendChild(img);
+                        divBox.appendChild(p);
+
+                        container.appendChild(divBox);
+                    });
+                } catch (error) {
+                    console.error('Error fetching latest events:', error);
+                }
+            }
+
+            // Fetch latest events every 5 seconds (adjust as needed)
+            setInterval(fetchLatestEvents, 1000);
+
+            // Initial fetch on page load
+            fetchLatestEvents();
+        });
+    </script>
+</body>
+</html>
